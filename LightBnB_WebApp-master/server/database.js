@@ -19,16 +19,11 @@ const pool = new Pool({
  * @return {Promise<{}>} A promise to the user.
  */
 const getUserWithEmail = function(email) {
-  let user;
-  for (const userId in users) {
-    user = users[userId];
-    if (user.email.toLowerCase() === email.toLowerCase()) {
-      break;
-    } else {
-      user = null;
-    }
-  }
-  return Promise.resolve(user);
+  const queryString = `
+  SELECT *
+  FROM users
+  WHERE email = $1;`;
+  return pool.query(queryString, [email.toLowerCase()]).then(res => res.rows[0]);
 }
 exports.getUserWithEmail = getUserWithEmail;
 
@@ -38,7 +33,10 @@ exports.getUserWithEmail = getUserWithEmail;
  * @return {Promise<{}>} A promise to the user.
  */
 const getUserWithId = function(id) {
-  return Promise.resolve(users[id]);
+  const queryString = `
+  SELECT * FROM users
+  WHERE id = $1;`;
+  return pool.query(queryString, [id]).then(res => res.rows[0]);
 }
 exports.getUserWithId = getUserWithId;
 
@@ -49,10 +47,14 @@ exports.getUserWithId = getUserWithId;
  * @return {Promise<{}>} A promise to the user.
  */
 const addUser =  function(user) {
-  const userId = Object.keys(users).length + 1;
-  user.id = userId;
-  users[userId] = user;
-  return Promise.resolve(user);
+  const queryString = `
+  INSERT INTO users
+  (name, password, email)
+  VALUES
+  ($1, $2, $3)
+  RETURNING *`;
+  return pool.query(queryString,
+    [user.name, user.password, user.email.toLowerCase()]).then(res => res.rows[0]);
 }
 exports.addUser = addUser;
 
@@ -64,8 +66,23 @@ exports.addUser = addUser;
  * @return {Promise<[{}]>} A promise to the reservations.
  */
 const getAllReservations = function(guest_id, limit = 10) {
-  return getAllProperties(null, 2);
-}
+  const queryString = `
+  SELECT
+  properties.*,
+  reservations.*,
+  avg(property_reviews.rating) as average_rating
+  FROM properties
+  JOIN reservations ON properties.id = reservations.property_id
+  JOIN property_reviews ON property_reviews.reservation_id = reservations.id
+  WHERE
+  reservations.guest_id = $1 AND
+  reservations.end_date < now() :: date
+  GROUP BY reservations.id, properties.id
+  ORDER BY reservations.start_date
+  LIMIT $2
+  `;
+  return pool.query(queryString, [guest_id, limit]).then(res => res.rows);
+};
 exports.getAllReservations = getAllReservations;
 
 /// Properties
@@ -80,7 +97,6 @@ exports.getAllReservations = getAllReservations;
   return pool
     .query(`SELECT * FROM properties LIMIT $1`, [limit])
     .then((result) => {
-      console.log(result.rows);
       return result.rows;
     })
     .catch((err) => {

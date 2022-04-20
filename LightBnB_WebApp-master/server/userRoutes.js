@@ -8,6 +8,7 @@ module.exports = function(router, database) {
     user.password = bcrypt.hashSync(user.password, 12);
     database.addUser(user)
     .then(user => {
+      console.log("result of addUser", user);
       if (!user) {
         res.send({error: "error"});
         return;
@@ -15,7 +16,9 @@ module.exports = function(router, database) {
       req.session.userId = user.id;
       res.send("🤗");
     })
-    .catch(e => res.send(e));
+    .catch(e => {
+      console.log(e);
+      res.send(e)});
   });
 
   /**
