@@ -16,9 +16,7 @@ module.exports = function(router, database) {
       req.session.userId = user.id;
       res.send("🤗");
     })
-    .catch(e => {
-      console.log(e);
-      res.send(e)});
+    .catch(e => res.send(e));
   });
 
   /**
