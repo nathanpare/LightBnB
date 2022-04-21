@@ -5,11 +5,15 @@
   flex-direction: column; }
 
 .property-listing {
+  background: #00a699;
+  color: white;
+  font-family: "poppins", sans-serif;
   margin: 20px 0;
+  padding-right: 20px;
   width: 100%;
   max-width: 600px;
   height: 200px;
-  border: 1px solid black;
+  border: 4px solid black;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -47,13 +51,29 @@
 
 .page-header__user-links ul {
   list-style: none;
-  display: flex; }
+  display: flex;
+}
   .page-header__user-links ul li {
     padding: 0;
     margin: 0 10px;
-    cursor: pointer; }
+    cursor: pointer;
+    color: white;
+    font-family: "poppins", sans-serif; }
 
 .hidden {
   display: none; }
+  
 
 /*# sourceMappingURL=main.css.map */
+
+body {
+  background: #ff5a5f;
+}
+
+.title {
+color: white;
+font-size: 50px;
+display: flex;
+justify-content: center;
+text-decoration: underline black;
+}
