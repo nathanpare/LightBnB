@@ -2,7 +2,8 @@
 
 This is a full stack application to show my new skills for creating databases and using SQL
 
-* to run this application
+### to run this application
+
 1. [Create](https://github.com/nathanpare/LightBnB/tree/main/LightBnB_WebApp-master) a new repository using this repository as a template.
 2. Clone your repository onto your local device.
 3. Install dependencies using the `npm install` command.
@@ -17,13 +18,13 @@ This is a full stack application to show my new skills for creating databases an
   *  "nodemon": "^1.19.1",
   *  "pg": "^8.7.3"
 
-Run this schema file in psql to create tables
-populate the database with these seed files: 01_sees.sql, 02_seeds.sql
+* Run this schema file in psql to create tables
+* populate the database with these seed files: 01_sees.sql, 02_seeds.sql
 
-## Screenshots
+### Screenshots
 
-!["Screenshot of Home Page"]()
-!["Screenshot of Login Page"]()
-!["Screenshot of Search Listings Page"]()
-!["Screenshot of Create Listing Page"]()
-!["Screenshot of My Listings Page"]()
+!["Screenshot of Home Page"](https://github.com/nathanpare/LightBnB/blob/main/docs/Home%20Page.png?raw=true)
+!["Screenshot of Login Page"](https://github.com/nathanpare/LightBnB/blob/main/docs/Login%20Page.png?raw=true)
+!["Screenshot of Search Listings Page"](https://github.com/nathanpare/LightBnB/blob/main/docs/Search%20Listing%20Page.png?raw=true)
+!["Screenshot of Create Listing Page"](https://github.com/nathanpare/LightBnB/blob/main/docs/Create%20Listing%20Page.png?raw=true)
+!["Screenshot of My Listings Page"](https://github.com/nathanpare/LightBnB/blob/main/docs/My%20Listings%20Page.png?raw=true)
