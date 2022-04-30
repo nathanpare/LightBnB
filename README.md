@@ -4,7 +4,7 @@ This is a full stack application to show my new skills for creating databases an
 
 ### to run this application
 
-1. [Create](https://github.com/nathanpare/LightBnB/tree/main/LightBnB_WebApp-master) a new repository using this repository as a template.
+1. [Create](https://github.com/nathanpare/LightBnB) a new repository using this repository as a template.
 2. Clone your repository onto your local device.
 3. Install dependencies using the `npm install` command.
 3. Start the web server using the `npm run local` command. The app will be served at <http://localhost:3000/>.
