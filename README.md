@@ -18,7 +18,7 @@ This is a full stack application to show my new skills for creating databases an
   *  "nodemon": "^1.19.1",
   *  "pg": "^8.7.3"
 
-* Run this schema file in psql to create tables
+* Run this schema file in psql to create tables 01_schema.sql
 * populate the database with these seed files: 01_sees.sql, 02_seeds.sql
 
 ### Screenshots
